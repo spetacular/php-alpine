@@ -1,0 +1,27 @@
+nginx:
+    build: ./nginx
+    hostname: api
+    ports:
+      - "8080:80"
+    links:
+      - "php"   
+    volumes:
+      - ~/code/www/:/usr/share/nginx/html/
+      - ./phpMyAdmin-4.7.4-all-languages:/usr/share/nginx/html/phpmyadmin
+
+php:
+    build: ./php
+    links:  
+      - "redis-server"
+      - "mysql-server"
+    volumes:
+      - ~/code/www/:/usr/share/nginx/html/ 
+      - ./phpMyAdmin-4.7.4-all-languages:/usr/share/nginx/html/phpmyadmin   
+
+redis-server:
+    build: ./redis
+
+mysql-server:
+    build: ./mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
