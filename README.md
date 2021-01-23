@@ -37,6 +37,7 @@ docker-compose up
 ## 运行环境
 PHPMyAdmin 的首页链接：
 http://localhost:8081/index.php
+登录页面，server可以不填，Username默认为root，Password默认为123456
 
 PHP环境为
 http://localhost:8080/
