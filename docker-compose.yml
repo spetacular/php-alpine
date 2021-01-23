@@ -7,7 +7,6 @@ nginx:
       - "php"   
     volumes:
       - ~/code/www/:/usr/share/nginx/html/
-      - ./phpMyAdmin-4.7.4-all-languages:/usr/share/nginx/html/phpmyadmin
 
 php:
     build: ./php
@@ -16,7 +15,6 @@ php:
       - "mysql-server"
     volumes:
       - ~/code/www/:/usr/share/nginx/html/ 
-      - ./phpMyAdmin-4.7.4-all-languages:/usr/share/nginx/html/phpmyadmin   
 
 redis-server:
     build: ./redis
@@ -25,3 +23,15 @@ mysql-server:
     build: ./mysql
     environment:
       - MYSQL_ROOT_PASSWORD=123456
+phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - mysql-server
+    environment:
+      PMA_HOST: mysql-server
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8081:80

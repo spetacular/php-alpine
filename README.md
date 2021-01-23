@@ -33,6 +33,14 @@ docker-compose build
 ```
 docker-compose up
 ```
+
+## 运行环境
+PHPMyAdmin 的首页链接：
+http://localhost:8081/index.php
+
+PHP环境为
+http://localhost:8080/
+
 ## docker-compose.yml 字段说明
 
 | 字段                  | 说明                        |
